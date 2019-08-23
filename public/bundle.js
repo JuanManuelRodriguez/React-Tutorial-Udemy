@@ -75,9 +75,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 console.log('app.js is running');
-console.log('square ', __WEBPACK_IMPORTED_MODULE_0__utils__["b" /* square */](4));
+console.log('square ', __WEBPACK_IMPORTED_MODULE_0__utils__["c" /* square */](4));
 console.log('add', __WEBPACK_IMPORTED_MODULE_0__utils__["a" /* add */](2, 3));
-
+console.log('substract', __WEBPACK_IMPORTED_MODULE_0__utils__["b" /* default */](100, 1));
 console.log('isAdult ', __WEBPACK_IMPORTED_MODULE_1__person__["b" /* isAdult */](18));
 console.log('canDrink', __WEBPACK_IMPORTED_MODULE_1__person__["a" /* canDrink */](18));
 
@@ -248,12 +248,15 @@ console.log('canDrink', __WEBPACK_IMPORTED_MODULE_1__person__["a" /* canDrink */
 console.log('utils.js is running');
 
 const square = (x)=> x * x;
-/* harmony export (immutable) */ __webpack_exports__["b"] = square;
+/* harmony export (immutable) */ __webpack_exports__["c"] = square;
  // inline export
 const add = (a, b)=> a + b;
 /* harmony export (immutable) */ __webpack_exports__["a"] = add;
 
-// export {square, add}; // named export
+const subtract = (a, b)=> a - b;
+/* harmony default export */ __webpack_exports__["b"] = (subtract);
+// esport default (a, b)=> a - b;
+// export {square, add, substract as default}; // named export
 
 
 /***/ }),
