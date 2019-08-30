@@ -3,10 +3,12 @@ import AddOption from './AddOption';
 import Options from './Options';
 import Header from './Header';
 import Action from './Action';
+import OptionModal from './OptionModal';
 
-class IndecisionApp extends React.Component {
+export default class IndecisionApp extends React.Component {
   state = {
-    options: []
+    options: [],
+    selectedOption: undefined
   }
   handleDeleteOptions = ()=> {
     this.setState(() => ({ options: [] }));
@@ -19,7 +21,9 @@ class IndecisionApp extends React.Component {
   handlePick = ()=> {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum];
-    alert(option);
+    // alert(option);
+    this.setState(() => ({selectedOption: option}));
+
   }
   handleAddOption = (option)=> {
     if(!option) {
@@ -29,6 +33,9 @@ class IndecisionApp extends React.Component {
     }
 
     this.setState((prevSatate) => ({ options: prevSatate.options.concat(option) }));
+  }
+  handleClearSelectedOption = () => {
+    this.setState(()=>({selectedOption: undefined}));
   }
   // lifecycle methods
   componentDidMount() {
@@ -55,19 +62,25 @@ class IndecisionApp extends React.Component {
     return (
       <div>
         <Header title={title} subtitle={subtitle}/>
-        <Action 
-        hasOptions={this.state.options.length > 0}
-        handlePick = {this.handlePick}
-         />
-        <Options 
-        options={this.state.options}
-        handleDeleteOptions={this.handleDeleteOptions}
-        handleDeleteOption={this.handleDeleteOption}
+        <div className="container">
+          <Action 
+          hasOptions={this.state.options.length > 0}
+          handlePick = {this.handlePick}
+          />
+          <div className="widget">
+            <Options 
+            options={this.state.options}
+            handleDeleteOptions={this.handleDeleteOptions}
+            handleDeleteOption={this.handleDeleteOption}
+            />
+            <AddOption handleAddOption={this.handleAddOption}/>
+          </div>
+        </div>
+        <OptionModal 
+          selectedOption={this.state.selectedOption}
+          handleClearSelectedOption={this.handleClearSelectedOption}
         />
-        <AddOption handleAddOption={this.handleAddOption}/>
       </div>
     )
   }
 }
-
-export default IndecisionApp;
